@@ -1,544 +1,107 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Project Brief — بريف المشروع</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>U NOTE | اطلب نوت بوك بتفاصيلك</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Tajawal:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@500;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --ink:#171512;
-    --ink-2:#211d18;
-    --paper:#efe6d3;
-    --brass:#b8863b;
-    --brass-bright:#d9a655;
-    --brass-dim:#8a672f;
-    --line:rgba(216,190,140,0.22);
-    --text-soft:rgba(239,230,211,0.62);
-    --red:#a34b3f;
-  }
-  *{box-sizing:border-box;}
-  body{margin:0;background:var(--ink);color:var(--paper);font-family:'Tajawal',sans-serif;}
-  html{scroll-behavior:smooth;}
-
-  .en{font-family:'Jost',sans-serif;}
-  .en-serif{font-family:'Cormorant Garamond',serif;}
-
-  /* Texture */
-  body::before{
-    content:"";
-    position:fixed; inset:0;
-    background-image:
-      radial-gradient(1px 1px at 20px 30px, rgba(216,190,140,0.05) 1px, transparent 0),
-      radial-gradient(1px 1px at 90px 70px, rgba(216,190,140,0.04) 1px, transparent 0);
-    background-size:120px 120px;
-    pointer-events:none;
-    z-index:0;
-  }
-
-  .wrap{max-width:760px;margin:0 auto;padding:0 24px 120px;position:relative;z-index:1;}
-
-  header.hero{
-    padding:72px 0 48px;
-    border-bottom:1px solid var(--line);
-    margin-bottom:56px;
-    text-align:center;
-  }
-  .kicker{
-    font-family:'Jost',sans-serif;
-    letter-spacing:0.35em;
-    text-transform:uppercase;
-    font-size:11px;
-    color:var(--brass-bright);
-    margin-bottom:18px;
-  }
-  h1{
-    font-family:'Cairo',sans-serif;
-    font-weight:800;
-    font-size:clamp(34px,6vw,54px);
-    margin:0 0 10px;
-    color:var(--paper);
-  }
-  h1 span.en-serif{
-    display:block;
-    font-style:italic;
-    font-weight:500;
-    font-size:clamp(16px,2.6vw,20px);
-    color:var(--text-soft);
-    letter-spacing:0.04em;
-    margin-top:10px;
-  }
-  .studio-mark{
-    margin-top:28px;
-    display:inline-flex;
-    align-items:center;
-    gap:10px;
-    font-size:12px;
-    color:var(--text-soft);
-  }
-  .studio-mark::before,.studio-mark::after{
-    content:"";
-    width:26px;height:1px;background:var(--brass-dim);
-  }
-
-  section.step{
-    margin-bottom:44px;
-    padding-bottom:36px;
-    border-bottom:1px solid var(--line);
-    position:relative;
-  }
-  section.step:last-of-type{border-bottom:none;}
-
-  .step-num{
-    font-family:'Cormorant Garamond',serif;
-    font-style:italic;
-    font-size:14px;
-    color:var(--brass-dim);
-    margin-bottom:6px;
-  }
-  label.field-label{
-    display:flex;
-    justify-content:space-between;
-    align-items:baseline;
-    font-family:'Cairo',sans-serif;
-    font-weight:700;
-    font-size:19px;
-    color:var(--paper);
-    margin-bottom:6px;
-  }
-  label.field-label .en{
-    font-size:12px;
-    font-weight:500;
-    color:var(--brass-bright);
-    text-transform:uppercase;
-    letter-spacing:0.12em;
-  }
-  .hint{
-    font-size:13px;
-    color:var(--text-soft);
-    margin:0 0 14px;
-    line-height:1.7;
-  }
-
-  input[type=text],input[type=email],input[type=tel],input[type=date],textarea{
-    width:100%;
-    background:transparent;
-    border:none;
-    border-bottom:1px solid var(--brass-dim);
-    color:var(--paper);
-    font-family:'Tajawal',sans-serif;
-    font-size:17px;
-    padding:10px 2px;
-    outline:none;
-    transition:border-color .25s ease, background .25s ease;
-  }
-  input::placeholder,textarea::placeholder{color:rgba(239,230,211,0.32);}
-  textarea{resize:vertical;min-height:88px;line-height:1.8;}
-  input:focus,textarea:focus{
-    border-color:var(--brass-bright);
-    background:rgba(216,190,140,0.04);
-  }
-
-  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:28px;}
-  @media(max-width:560px){.two-col{grid-template-columns:1fr;}}
-
-  .chip-group{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px;}
-  .chip{
-    border:1px solid var(--brass-dim);
-    color:var(--text-soft);
-    padding:8px 16px;
-    border-radius:100px;
-    font-size:13px;
-    cursor:pointer;
-    user-select:none;
-    transition:all .2s ease;
-  }
-  .chip.active{
-    background:var(--brass-bright);
-    color:var(--ink);
-    border-color:var(--brass-bright);
-    font-weight:700;
-  }
-
-  input[type=file]{
-    width:100%;
-    color:var(--text-soft);
-    font-size:13px;
-    padding:14px;
-    border:1px dashed var(--brass-dim);
-    border-radius:4px;
-    background:rgba(216,190,140,0.03);
-  }
-
-  .ref-item{
-    border:1px solid var(--line);
-    border-radius:4px;
-    padding:18px;
-    margin-bottom:14px;
-  }
-  .ref-label{
-    font-size:12px;
-    color:var(--brass-dim);
-    margin-bottom:10px;
-    letter-spacing:0.05em;
-  }
-  .ref-item input[type=text]{border-bottom:1px solid var(--line);font-size:14px;}
-
-  /* Currency toggle */
-  .currency-toggle{
-    display:inline-flex;
-    border:1px solid var(--brass-dim);
-    border-radius:100px;
-    overflow:hidden;
-    margin-inline-start:12px;
-    vertical-align:middle;
-  }
-  .currency-toggle .cur-opt{
-    padding:4px 14px;
-    font-size:12px;
-    font-family:'Jost',sans-serif;
-    cursor:pointer;
-    color:var(--text-soft);
-    transition:all .2s ease;
-  }
-  .currency-toggle .cur-opt.active{
-    background:var(--brass-bright);
-    color:var(--ink);
-    font-weight:600;
-  }
-
-  /* Footer summary fields (budget + deadline) styled distinctly */
-  .finale{
-    background:var(--ink-2);
-    border:1px solid var(--line);
-    border-radius:6px;
-    padding:32px;
-    margin-top:8px;
-  }
-  .finale .kicker{text-align:right;margin-bottom:22px;}
-
-  .submit-area{
-    margin-top:56px;
-    text-align:center;
-  }
-  button.send{
-    font-family:'Cairo',sans-serif;
-    font-weight:700;
-    font-size:17px;
-    background:var(--brass-bright);
-    color:var(--ink);
-    border:none;
-    padding:17px 48px;
-    border-radius:100px;
-    cursor:pointer;
-    transition:transform .2s ease, box-shadow .2s ease;
-    box-shadow:0 8px 24px rgba(217,166,85,0.15);
-  }
-  button.send:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(217,166,85,0.25);}
-  button.send:disabled{opacity:0.5;cursor:wait;transform:none;}
-
-  .alt-send{
-    margin-top:18px;
-    font-size:13px;
-    color:var(--text-soft);
-  }
-  .alt-send a{color:var(--brass-bright);text-decoration:none;border-bottom:1px solid var(--brass-dim);}
-
-  .status{
-    margin-top:24px;
-    font-size:14px;
-    display:none;
-  }
-  .status.show{display:block;}
-  .status.ok{color:#7fae7a;}
-  .status.err{color:var(--red);}
-
-  footer{
-    text-align:center;
-    margin-top:64px;
-    font-size:11px;
-    letter-spacing:0.2em;
-    text-transform:uppercase;
-    color:var(--brass-dim);
-  }
-
-  /* required asterisk */
-  .req{color:var(--red);}
+:root{--bg:#F9F8F3;--card:#fff;--ink:#102238;--muted:#5d6877;--gold:#D1B06B;--gold-d:#9a7a35;--line:#e4dfd0;--btn:#102238;--btn-t:#F9F8F3;color-scheme:light;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b1624;--card:#102238;--ink:#F9F8F3;--muted:#a9b3c1;--gold-d:#D1B06B;--line:#27405e;--btn:#D1B06B;--btn-t:#102238;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0b1624;--card:#102238;--ink:#F9F8F3;--muted:#a9b3c1;--gold-d:#D1B06B;--line:#27405e;--btn:#D1B06B;--btn-t:#102238;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Tajawal",Tahoma,Arial,sans-serif;line-height:1.7;font-size:16px}
+main{max-width:520px;margin:0 auto;padding:28px 18px 48px}
+h1{font-family:"Reem Kufi","Tajawal",Tahoma,sans-serif;font-weight:700;font-size:30px;line-height:1.3;margin:0;text-align:center}
+.tag{text-align:center;color:var(--gold-d);margin:4px 0 22px;font-weight:500}
+.specs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:0 0 24px;padding:0;list-style:none}
+.specs li{border:1px solid var(--gold);border-radius:999px;padding:3px 12px;font-size:13px;color:var(--muted)}
+form{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+label,.lbl{display:block;font-weight:700;margin:16px 0 6px}
+label:first-of-type{margin-top:0}
+input[type=text]{width:100%;font:inherit;color:var(--ink);background:transparent;border:1px solid var(--line);border-radius:10px;padding:11px 12px}
+input[type=text]:focus,button:focus-visible,.drop:focus-within,.sw input:focus-visible+span{outline:2px solid var(--gold);outline-offset:2px}
+.drop{position:relative;display:flex;align-items:center;justify-content:center;gap:10px;min-height:120px;border:1.5px dashed var(--gold);border-radius:12px;cursor:pointer;text-align:center;color:var(--muted);overflow:hidden;padding:10px}
+.drop input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;font-size:0;z-index:2}
+.drop span,.drop img{pointer-events:none}
+.drop img{max-height:200px;max-width:100%;border-radius:8px;display:none}
+.sws{display:flex;flex-wrap:wrap;gap:8px}
+.sw{position:relative;cursor:pointer}
+.sw input{position:absolute;opacity:0}
+.sw span{display:flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:999px;padding:5px 12px 5px 10px;font-size:14px}
+.sw i{width:16px;height:16px;border-radius:50%;border:1px solid rgba(128,128,128,.5)}
+.sw input:checked+span{border-color:var(--gold);background:var(--gold);color:#102238;font-weight:700}
+button{width:100%;margin-top:22px;font:inherit;font-weight:700;font-size:17px;background:var(--btn);color:var(--btn-t);border:0;border-radius:12px;padding:14px;cursor:pointer}
+.oth{margin-top:10px}
+.err{color:#c0392b;font-size:14px;margin:8px 0 0;min-height:1em}
+#done{display:none;background:var(--card);border:1px solid var(--gold);border-radius:14px;padding:20px;margin-top:16px;text-align:center}
+#done h2{font-family:"Reem Kufi","Tajawal",sans-serif;margin:0 0 6px;font-size:20px}
+#done button{margin-top:12px}
+.ghost{background:transparent;color:var(--ink);border:1px solid var(--gold)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
-<div class="wrap">
+<main>
+<h1>دفترك بيحكي عنك</h1>
+<p class="tag">بتفاصيلك أنت | WITH YOUR DETAILS</p>
+<p style="text-align:center;color:var(--muted);margin:0 0 16px">قولنا عنك شوية، ونصمملك نوت بوك تشبهك.</p>
+<ul class="specs"><li>100 ورقة بتصميمك</li><li>ورق 80 جرام</li><li>غلاف 300 جرام</li><li>غلاف أمامي شفاف</li><li>غلاف خلفي لامع</li></ul>
 
-  <header class="hero">
-    <div class="kicker en">Design Brief Intake</div>
-    <h1>بريف المشروع
-      <span class="en-serif">Share the idea — I'll take it from here.</span>
-    </h1>
-    <div class="studio-mark en">STUDIO BRIEF FORM</div>
-  </header>
+<form id="f" novalidate>
+<label for="nm">الاسم</label>
+<input type="text" id="nm" autocomplete="name" placeholder="اسمك زي ما تحب يتكتب">
 
-  <form id="briefForm">
+<span class="lbl">مجال العمل</span>
+<div class="sws" id="g-wk"></div>
+<input type="text" id="wk" class="oth" placeholder="حاجة تانية؟ اكتبها هنا">
 
-    <!-- 1 -->
-    <section class="step">
-      <div class="step-num en-serif">01</div>
-      <label class="field-label">الاسم <span class="en">Name</span></label>
-      <input type="text" name="الاسم" placeholder="اكتب اسمك الكامل" required>
-    </section>
+<span class="lbl">الدراسة</span>
+<div class="sws" id="g-st"></div>
+<input type="text" id="st" class="oth" placeholder="كليتك أو تخصصك لو مش موجود فوق">
 
-    <!-- 2 -->
-    <section class="step">
-      <div class="step-num en-serif">02</div>
-      <div class="two-col">
-        <div>
-          <label class="field-label">واتساب <span class="en">WhatsApp</span></label>
-          <input type="tel" name="واتساب" placeholder="01xxxxxxxxx" required>
-        </div>
-        <div>
-          <label class="field-label">البريد الإلكتروني <span class="en">Email</span></label>
-          <input type="email" name="البريد الإلكتروني" placeholder="name@email.com" required>
-        </div>
-      </div>
-    </section>
+<span class="lbl">الشغف والشخصية</span>
+<div class="sws" id="g-ps"></div>
+<input type="text" id="ps" class="oth" placeholder="عرّفنا بنفسك بجملة">
 
-    <!-- 3 -->
-    <section class="step">
-      <div class="step-num en-serif">03</div>
-      <div class="two-col">
-        <div>
-          <label class="field-label">المجال <span class="en">Field</span></label>
-          <input type="text" name="المجال" placeholder="مثال: الأزياء، المطاعم، التقنية">
-        </div>
-        <div>
-          <label class="field-label">اسم المشروع <span class="en">Project Name</span></label>
-          <input type="text" name="اسم المشروع" placeholder="اسم العلامة التجارية أو المشروع" required>
-        </div>
-      </div>
-    </section>
+<span class="lbl">الألوان المفضلة</span>
+<div class="sws" id="sws"></div>
+<input type="text" id="oc" placeholder="ألوان تانية؟ اكتبها هنا" style="margin-top:10px">
 
-    <!-- 3b -->
-    <section class="step">
-      <div class="step-num en-serif">03b</div>
-      <div class="two-col">
-        <div>
-          <label class="field-label">البلد <span class="en">Country</span></label>
-          <input type="text" name="البلد" placeholder="بلد الإقامة">
-        </div>
-        <div>
-          <label class="field-label">الجنسية <span class="en">Nationality</span></label>
-          <input type="text" name="الجنسية" placeholder="الجنسية">
-        </div>
-      </div>
-    </section>
+<p class="err" id="err" role="alert"></p>
+<button type="submit">ابعت الطلب على واتساب</button>
+</form>
 
-    <!-- 4 -->
-    <section class="step">
-      <div class="step-num en-serif">04</div>
-      <label class="field-label">نبذة عن المشروع والفكرة الأساسية <span class="en">Project Overview</span></label>
-      <p class="hint">ما هو المشروع، وما الفكرة الأساسية التي يسعى البراند إلى إيصالها؟</p>
-      <textarea name="نبذة عن المشروع" required></textarea>
-    </section>
-
-    <!-- 5 -->
-    <section class="step">
-      <div class="step-num en-serif">05</div>
-      <label class="field-label">الجمهور المستهدف <span class="en">Target Audience</span></label>
-      <p class="hint">من الذي سيستخدم المنتج أو يشتريه؟ الفئة العمرية، الاهتمامات، ومكان تواجدهم.</p>
-      <textarea name="الجمهور المستهدف"></textarea>
-    </section>
-
-    <!-- 6 -->
-    <section class="step">
-      <div class="step-num en-serif">06</div>
-      <label class="field-label">شخصية البراند <span class="en">Brand Personality</span></label>
-      <p class="hint">اختر الصفات الأقرب لشخصية البراند، أو أضفها بنفسك.</p>
-      <div class="chip-group" id="personalityChips">
-        <div class="chip">هادئة</div>
-        <div class="chip">جريئة</div>
-        <div class="chip">دقيقة ومحيّدة</div>
-        <div class="chip">فاخرة</div>
-        <div class="chip">دافئة</div>
-        <div class="chip">عصرية</div>
-        <div class="chip">تراثية</div>
-        <div class="chip">مرحة</div>
-      </div>
-      <input type="hidden" name="شخصية البراند" id="personalityInput">
-      <textarea name="شخصية البراند - تفاصيل إضافية" placeholder="وصف إضافي إن وُجد..." style="margin-top:14px;min-height:60px;"></textarea>
-    </section>
-
-    <!-- 7 -->
-    <section class="step">
-      <div class="step-num en-serif">07</div>
-      <div class="two-col">
-        <div>
-          <label class="field-label">الخطوط المقترحة <span class="en">Fonts</span></label>
-          <input type="text" name="الخطوط المقترحة" placeholder="إن وُجدت خطوط تفضّلها">
-        </div>
-        <div>
-          <label class="field-label">الألوان المقترحة <span class="en">Colors</span></label>
-          <input type="text" name="الألوان المقترحة" placeholder="إن وُجدت ألوان تفضّلها">
-        </div>
-      </div>
-    </section>
-
-    <!-- 8 -->
-    <section class="step">
-      <div class="step-num en-serif">08</div>
-      <label class="field-label">تصميمات مقترحة / مراجع <span class="en">Reference Designs</span></label>
-      <p class="hint">يمكن إرفاق صورة أو إضافة رابط تصميم في كل خانة (اختياري، الحد الأقصى 5 ميجابايت لكل ملف).</p>
-
-      <div class="ref-item">
-        <div class="ref-label en-serif">مرجع 01</div>
-        <input type="file" name="تصميم مقترح 1 - ملف" accept="image/*" style="margin-bottom:8px;">
-        <input type="text" name="تصميم مقترح 1 - رابط" placeholder="أو أضف رابط التصميم">
-      </div>
-
-      <div class="ref-item">
-        <div class="ref-label en-serif">مرجع 02</div>
-        <input type="file" name="تصميم مقترح 2 - ملف" accept="image/*" style="margin-bottom:8px;">
-        <input type="text" name="تصميم مقترح 2 - رابط" placeholder="أو أضف رابط التصميم">
-      </div>
-
-      <div class="ref-item">
-        <div class="ref-label en-serif">مرجع 03</div>
-        <input type="file" name="تصميم مقترح 3 - ملف" accept="image/*" style="margin-bottom:8px;">
-        <input type="text" name="تصميم مقترح 3 - رابط" placeholder="أو أضف رابط التصميم">
-      </div>
-
-      <div class="ref-item">
-        <div class="ref-label en-serif">مرجع 04</div>
-        <input type="file" name="تصميم مقترح 4 - ملف" accept="image/*" style="margin-bottom:8px;">
-        <input type="text" name="تصميم مقترح 4 - رابط" placeholder="أو أضف رابط التصميم">
-      </div>
-    </section>
-
-    <!-- FINALE: budget + deadline -->
-    <section class="finale">
-      <div class="kicker en">Final Details</div>
-      <div class="two-col">
-        <div>
-          <label class="field-label">
-            الميزانية <span class="req">*</span><span class="en">Budget</span>
-          </label>
-          <div class="currency-toggle" id="currencyToggle">
-            <div class="cur-opt active" data-cur="جنيه مصري">جنيه مصري</div>
-            <div class="cur-opt" data-cur="دولار أمريكي">دولار أمريكي</div>
-          </div>
-          <input type="hidden" name="عملة الميزانية" id="currencyInput" value="جنيه مصري">
-          <input type="text" name="الميزانية" placeholder="أدخل القيمة التقريبية" style="margin-top:14px;" required>
-        </div>
-        <div>
-          <label class="field-label">آخر موعد للتسليم <span class="req">*</span><span class="en">Deadline</span></label>
-          <input type="date" name="آخر موعد للتسليم" required>
-        </div>
-      </div>
-    </section>
-
-    <div class="submit-area">
-      <button type="submit" class="send" id="submitBtn">إرسال البريف</button>
-      <div class="status" id="statusMsg"></div>
-      <div class="alt-send">
-        أو أرسله مباشرة عبر <a href="#" id="waLink" target="_blank">واتساب</a>
-      </div>
-    </div>
-
-  </form>
-
-  <footer class="en">Handmade briefs, no templates.</footer>
-</div>
-
+<section id="done" aria-live="polite">
+<h2>الخطوة الأخيرة: ابعت الصورة</h2>
+<p id="dmsg">فتحنا واتساب برسالة جاهزة. ابعتها، وبعدها ابعت صورتك أو تصميمك في نفس المحادثة.</p>
+</section>
+</main>
 <script>
-  // Personality chips (multi-select)
-  const chips = document.querySelectorAll('#personalityChips .chip');
-  const personalityInput = document.getElementById('personalityInput');
-  let selected = [];
-  chips.forEach(chip => {
-    chip.addEventListener('click', () => {
-      chip.classList.toggle('active');
-      const val = chip.textContent.trim();
-      if (selected.includes(val)) {
-        selected = selected.filter(s => s !== val);
-      } else {
-        selected.push(val);
-      }
-      personalityInput.value = selected.join('، ');
-    });
-  });
-
-  // Currency toggle
-  const curOpts = document.querySelectorAll('#currencyToggle .cur-opt');
-  const currencyInput = document.getElementById('currencyInput');
-  curOpts.forEach(opt => {
-    opt.addEventListener('click', () => {
-      curOpts.forEach(o => o.classList.remove('active'));
-      opt.classList.add('active');
-      currencyInput.value = opt.dataset.cur;
-    });
-  });
-
-  const form = document.getElementById('briefForm');
-  const btn = document.getElementById('submitBtn');
-  const statusMsg = document.getElementById('statusMsg');
-
-  form.addEventListener('submit', async function(e) {
-    e.preventDefault();
-    btn.disabled = true;
-    btn.textContent = 'جاري الإرسال...';
-    statusMsg.className = 'status';
-
-    const formData = new FormData(form);
-    // ⚠️ استبدل السطر التالي بمفتاح Web3Forms الخاص بك
-    // لازم تعمل حساب على web3forms.com بإيميل aaliashraf188@gmail.com
-    // عشان كل الرسايل توصل تلقائيًا لهذا الإيميل
-    formData.append('access_key', '33a984f1-4ab1-48d8-b903-bb1170bf8f60');
-    formData.append('subject', 'بريف مشروع جديد — ' + (formData.get('اسم المشروع') || ''));
-    formData.append('from_name', 'نموذج البريف');
-
-    try {
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        body: formData
-      });
-      const result = await response.json();
-      if (result.success) {
-        statusMsg.textContent = 'تم الإرسال بنجاح، وسيتم التواصل معك قريبًا.';
-        statusMsg.className = 'status show ok';
-        form.reset();
-        selected = [];
-        chips.forEach(c => c.classList.remove('active'));
-        curOpts.forEach(o => o.classList.remove('active'));
-        curOpts[0].classList.add('active');
-        currencyInput.value = 'جنيه مصري';
-      } else {
-        throw new Error(result.message || 'حدث خطأ');
-      }
-    } catch (err) {
-      statusMsg.textContent = 'حدث خطأ أثناء الإرسال، يرجى المحاولة مرة أخرى أو استخدام واتساب.';
-      statusMsg.className = 'status show err';
-    } finally {
-      btn.disabled = false;
-      btn.textContent = 'إرسال البريف';
-    }
-  });
-
-  // WhatsApp deep link built from current field values
-  document.getElementById('waLink').addEventListener('click', function(e) {
-    e.preventDefault();
-    const fd = new FormData(form);
-    let msg = 'بريف مشروع جديد:%0A%0A';
-    msg += 'الاسم: ' + (fd.get('الاسم') || '') + '%0A';
-    msg += 'اسم المشروع: ' + (fd.get('اسم المشروع') || '') + '%0A';
-    msg += 'البلد: ' + (fd.get('البلد') || '') + '%0A';
-    msg += 'الجنسية: ' + (fd.get('الجنسية') || '') + '%0A';
-    msg += 'المجال: ' + (fd.get('المجال') || '') + '%0A';
-    msg += 'نبذة: ' + (fd.get('نبذة عن المشروع') || '') + '%0A';
-    msg += 'الجمهور المستهدف: ' + (fd.get('الجمهور المستهدف') || '') + '%0A';
-    msg += 'شخصية البراند: ' + (fd.get('شخصية البراند') || '') + '%0A';
-    msg += 'الميزانية: ' + (fd.get('الميزانية') || '') + ' (' + (fd.get('عملة الميزانية') || '') + ')%0A';
-    msg += 'آخر موعد للتسليم: ' + (fd.get('آخر موعد للتسليم') || '') + '%0A';
-    window.open('https://wa.me/201551881675?text=' + msg, '_blank');
-  });
+var WA="201551881675",file=null;
+var cols=[["كحلي","#102238"],["ذهبي","#D1B06B"],["أسود","#1a1a1a"],["أبيض","#ffffff"],["بيج","#e6d7bd"],["أخضر زيتي","#5b6b3a"],["بورجندي","#6d1f2f"],["وردي","#e8b4bc"],["رمادي","#8d949e"],["سماوي","#7fb4d6"]];
+var sws=document.getElementById("sws");
+cols.forEach(function(c){var l=document.createElement("label");l.className="sw";l.style.margin="0";l.style.fontWeight="400";
+l.innerHTML='<input type="checkbox" value="'+c[0]+'"><span><i style="background:'+c[1]+'"></i>'+c[0]+'</span>';sws.appendChild(l)});
+function mk(id,arr){var c=document.getElementById("g-"+id);arr.forEach(function(t){var l=document.createElement("label");l.className="sw";l.style.cssText="margin:0;font-weight:400";l.innerHTML='<input type="checkbox" value="'+t+'"><span>'+t+'</span>';c.appendChild(l)})}
+mk("wk",["مصمم","صانع محتوى","فريلانسر","صاحب مشروع","مبرمج","موظف"]);
+mk("st",["هندسة","فنون جميلة","تجارة وإدارة","إعلام","حاسبات ومعلومات","طب وصيدلة","آداب وألسن"]);
+mk("ps",["تصميم","تصوير","كتابة","موسيقى","قراءة","سفر","رياضة","طموح","هادئ","مبدع","منظم","جريء"]);
+function pk(id){var a=[].slice.call(document.querySelectorAll("#g-"+id+" input:checked")).map(function(i){return i.value});if(val(id))a.push(val(id));return a.join("، ")||"-"}
+function val(id){return document.getElementById(id).value.trim()}
+document.getElementById("f").addEventListener("submit",function(e){
+e.preventDefault();var err=document.getElementById("err");
+if(!val("nm")){err.textContent="اكتب اسمك.";return}
+err.textContent="";
+var picked=[].slice.call(sws.querySelectorAll("input:checked")).map(function(i){return i.value});
+if(val("oc"))picked.push(val("oc"));
+var t="طلب نوت بوك مخصصة - U NOTE\n\nالاسم: "+val("nm")+"\nمجال العمل: "+pk("wk")+"\nالدراسة: "+pk("st")+"\nالشغف والشخصية: "+pk("ps")+"\nالألوان المفضلة: "+(picked.join("، ")||"-")+"\n\n(هبعت الصورة في الرسالة الجاية)";
+var a=document.createElement("a");a.href="https://wa.me/"+WA+"?text="+encodeURIComponent(t);a.target="_blank";a.rel="noopener";document.body.appendChild(a);a.click();a.remove();
+var d=document.getElementById("done");d.style.display="block";d.scrollIntoView({behavior:"smooth"});
+});
 </script>
 </body>
 </html>
